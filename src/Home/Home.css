@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* Base styles */
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-parallax {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../assets/bg1.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  /* transform: translateY(0);
+  transition: transform 0.1s ease-out; */
+}
+
+.per-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--per-primary-dark);
+}
+
+/* Parallax Background */
+.per-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Dark Overlay */
+.per-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Container */
+.per-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Large Left Box */
+.per-text-box {
+  background: var(--per-secondary-dark);
+  padding: 40px;
+  border-radius: 15px;
+  width: 50%;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.per-heading {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--per-highlight);
+}
+
+.per-subheading {
+  font-size: 1.5rem;
+  color: var(--per-text-light);
+  margin-top: 10px;
+}
+
+/* Right Side - Percentage Counter */
+.per-percentage-box {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--per-highlight);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes typeWriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes shine {
+  from {
+    background-position: 200% center;
+  }
+}
+
+@keyframes numberCount {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-right {
+  animation: slideInRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-type {
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  animation: typeWriter 2.5s steps(40, end) forwards;
+}
+
+/* Enhanced 3D Hover Effect */
+.hover-3d {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hover-3d:hover {
+  transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(133, 213, 200, 0.15);
+}
+
+/* Enhanced Shining effect */
+.shine {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(133, 213, 200, 0.15) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+/* Enhanced Parallax container */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #85d5c8;
+  border-radius: 6px;
+  border: 3px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6ac4b7;
+}
+
+/* Enhanced Section reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card Styles */
+.stat-card {
+  background-color: rgba(49, 55, 67, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(133, 213, 200, 0.1);
+}
+
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(to right, #85d5c8, #6ac4b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Progress Bar Animation */
+@keyframes progressFill {
+  from {
+    width: 0;
+  }
+}
+
+.progress-bar {
+  animation: progressFill 1.5s ease-out forwards;
+}
