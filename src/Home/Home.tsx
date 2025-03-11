@@ -9,6 +9,8 @@ import Navbar from '../Navbar/Navbar';
 import { CheckCircle, ClipboardCheck, RefreshCw } from "lucide-react";
 import { motion } from 'framer-motion';
 import bgImage from '../assets/bg-2.jpg';
+import bg4 from '../assets/bg-4.jpg'
+import bg11 from '../assets/bg-12.jpg'
 
 
 
@@ -16,6 +18,26 @@ import bgImage from '../assets/bg-2.jpg';
 function App() {
   const [isVisible, setIsVisible] = useState({});
   const sectionRefs = useRef([]);
+
+
+
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
+    
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(index % 2 === 0 ? "animate-slide-in-left" : "animate-slide-in-right");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    
+    revealElements.forEach((el) => observer.observe(el));
+  }, []);
 
   const sectionReff = useRef(null);
   const marqueeRef = useRef(null);
@@ -124,7 +146,7 @@ function App() {
         id="hero"
         className="relative min-h-screen flex items-center justify-center parallax"
         style={{ 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=100&w=3840")',
+          backgroundImage: `url(${bg11})`,
           backgroundAttachment: 'fixed'
         }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40"></div>
@@ -137,27 +159,26 @@ function App() {
               Next-Generation Industrial Automation & Analytics
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-              {[
-                { title: 'Active Orders', icon: Box, value: 247, suffix: '', desc: 'Real-time tracking' },
-                { title: 'Daily Output', icon: Activity, value: 1893, suffix: '', desc: 'Units produced' },
-                { title: 'Efficiency', icon: Zap, value: 98.7, suffix: '%', desc: 'Overall performance' }
-              ].map((stat, index) => (
-                <div 
-                  key={index}
-                  className="hover-3d shine stat-card p-10 rounded-2xl transform transition-all duration-500 reveal"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl font-semibold">{stat.title}</h3>
-                    <stat.icon className="text-[#85d5c8] w-12 h-12" />
-                  </div>
-                  <p className="text-7xl font-bold text-[#85d5c8] mb-4">
-                    {stat.value}{stat.suffix}
-                  </p>
-                  <p className="text-xl text-gray-400">{stat.desc}</p>
+            {[ 
+              { title: 'Active Orders', icon: Box, value: 247, suffix: '', desc: 'Real-time tracking' },
+              { title: 'Daily Output', icon: Activity, value: 1893, suffix: '', desc: 'Units produced' },
+              { title: 'Efficiency', icon: Zap, value: 98.7, suffix: '%', desc: 'Overall performance' }
+            ].map((stat, index) => (
+              <div 
+                key={index}
+                className={`hover-3d shine stat-card p-10 rounded-2xl transform transition-all duration-500 reveal opacity-0 ${index % 2 === 0 ? "animate-slide-in-left" : "animate-slide-in-right"}`}
+              >
+                <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-2xl font-semibold">{stat.title}</h3>
+                  <stat.icon className="text-[#85d5c8] w-12 h-12" />
                 </div>
-              ))}
-            </div>
+                <p className="text-7xl font-bold text-[#85d5c8] mb-4">
+                  {stat.value}{stat.suffix}
+                </p>
+                <p className="text-xl text-gray-400">{stat.desc}</p>
+              </div>
+            ))}
+          </div>
           </div>
         </div>
       </section>
@@ -223,35 +244,47 @@ function App() {
 
 
       {/* Process Optimization Section */}
-      <section 
+      <section
       ref={sectionReff}
       id="optimization"
-      className="relative min-h-[60vh] py-16 parallax overflow-hidden"
-      style={{ 
+      className="relative min-h-[90vh] py-24 flex flex-col justify-center items-center overflow-hidden"
+      style={{
         backgroundImage: `url(${bgImage})`,
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'top'
-      }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/50"></div>
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
       
       {/* Marquee Section */}
       <div className="absolute top-10 w-full overflow-hidden">
-        <div className="marquee flex whitespace-nowrap" ref={marqueeRef}>
+        <div className="marquee flex whitespace-nowrap text-[#85d5c8] text-5xl font-extrabold" ref={marqueeRef}>
           {[...Array(2)].map((_, i) => (
-            <p key={i} className="text-6xl font-bold text-[#85d5c8] px-10 uppercase">
-              Intelligent Automation | RPA in Smart Factories | UiPath for Workflow Automation | AI-Driven Process Control | Enhancing Manufacturing Efficiency | Reducing Operational Costs | Seamless Integration with IoT |
+            <p key={i} className="px-16 uppercase tracking-widest">
+              AI-Powered Optimization | Hyper-Automation | Smart Analytics | IoT-Integrated Systems | Seamless Workflow Automation | Data-Driven Decision Making |
             </p>
           ))}
         </div>
       </div>
 
-      <div className="container mx-auto px-8 relative z-10">
-        <h2 className="text-7xl font-bold mb-10 text-center text-[#85d5c8] reveal">
-          Process Optimization
+      <div className="container mx-auto px-6 text-center relative z-10">
+        <h2 className="text-6xl font-extrabold text-[#85d5c8] animate-fade-in mb-6">
+          Next-Gen Process Optimization
         </h2>
-        <h3 className="text-3xl font-medium text-left text-gray-300">
-          Driving Efficiency with Smart Automation
-        </h3>
+        <p className="text-2xl text-gray-300 animate-slide-up max-w-3xl mx-auto">
+          Leverage AI and automation to drive efficiency, reduce costs, and revolutionize industrial operations.
+        </p>
+        
+        {/* Small Boxes Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 opacity-0 animate-appear">
+          {["Smart Automation", "Data Insights", "IoT Integration"].map((title, index) => (
+            <div key={index} className="bg-[#222] p-6 rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
+              <h3 className="text-2xl font-semibold text-[#85d5c8]">{title}</h3>
+              <p className="text-gray-300 mt-2">Revolutionizing industrial operations with AI-driven solutions.</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <style jsx>{`
@@ -261,7 +294,28 @@ function App() {
         }
         .marquee {
           display: flex;
-          animation: marquee 10s linear infinite;
+          animation: marquee 12s linear infinite;
+        }
+        @keyframes fade-in {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+          animation: fade-in 1.5s ease-out;
+        }
+        @keyframes slide-up {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-up {
+          animation: slide-up 1.2s ease-out;
+        }
+        @keyframes appear {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-appear {
+          animation: appear 1.5s ease-out 0.5s forwards;
         }
       `}</style>
     </section>
@@ -270,119 +324,83 @@ function App() {
 
       {/* Predictive Maintenance Section */}
       <section 
-        ref={el => sectionRefs.current[4] = el}
-        id="maintenance"
-        className="relative min-h-screen py-32 parallax"
-        style={{ 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1581092162384-8987c1d64926?auto=format&fit=crop&q=100&w=3840")',
-          backgroundAttachment: 'fixed'
-        }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/50"></div>
-        <div className="container mx-auto px-8 relative z-10">
-          <h2 className="text-7xl font-bold mb-20 text-center text-[#85d5c8] reveal">
-            Predictive Maintenance
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {[
-              {
-                title: 'Equipment Health Score',
-                icon: Gauge,
-                value: 92.3,
-                status: 'Optimal',
-                nextMaintenance: '15 days',
-                metrics: [
-                  { label: 'Vibration Levels', value: 'Normal', health: 95 },
-                  { label: 'Temperature', value: '72°C', health: 88 },
-                  { label: 'Oil Analysis', value: 'Good', health: 94 }
-                ]
-              },
-              {
-                title: 'Maintenance Schedule',
-                icon: Timer,
-                value: 87.5,
-                status: 'Scheduled',
-                nextMaintenance: '3 days',
-                metrics: [
-                  { label: 'Belt Tension', value: 'Warning', health: 82 },
-                  { label: 'Bearing Health', value: 'Good', health: 90 },
-                  { label: 'Alignment', value: 'Normal', health: 91 }
-                ]
-              },
-              {
-                title: 'Component Lifecycle',
-                icon: Settings,
-                value: 95.8,
-                status: 'Monitored',
-                nextMaintenance: '30 days',
-                metrics: [
-                  { label: 'Gear System', value: 'Optimal', health: 96 },
-                  { label: 'Hydraulics', value: 'Good', health: 93 },
-                  { label: 'Electronics', value: 'Normal', health: 98 }
-                ]
-              },
-              {
-                title: 'System Diagnostics',
-                icon: Terminal,
-                value: 89.4,
-                status: 'Active',
-                nextMaintenance: '7 days',
-                metrics: [
-                  { label: 'Control System', value: 'Normal', health: 92 },
-                  { label: 'Sensors', value: 'Warning', health: 85 },
-                  { label: 'Network', value: 'Good', health: 91 }
-                ]
-              }
-            ].map((system, index) => (
-              <div 
-                key={index}
-                className="hover-3d shine stat-card p-12 rounded-2xl transform transition-all duration-500 reveal"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <h3 className="text-3xl font-semibold mb-3">{system.title}</h3>
-                    <div className="flex items-center space-x-4">
-                      <span className={`px-4 py-2 rounded-full text-lg ${
-                        system.status === 'Optimal' ? 'bg-green-500/20 text-green-400' :
-                        system.status === 'Warning' ? 'bg-yellow-500/20 text-yellow-400' :
-                        'bg-[#85d5c8]/20 text-[#85d5c8]'
-                      }`}>{system.status}</span>
-                      <span className="text-gray-400">Next: {system.nextMaintenance}</span>
-                    </div>
-                  </div>
-                  <system.icon className="text-[#85d5c8] w-16 h-16" />
-                </div>
-                <div className="text-6xl font-bold text-[#85d5c8] mb-10">
-                  {system.value}%
-                </div>
-                <div className="space-y-6">
-                  {system.metrics.map((metric, idx) => (
-                    <div key={idx} className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-xl">{metric.label}</span>
-                        <div className="flex items-center space-x-4">
-                          <span className={`text-lg ${
-                            metric.value === 'Warning' ? 'text-yellow-400' :
-                            metric.value === 'Optimal' ? 'text-green-400' :
-                            'text-[#85d5c8]'
-                          }`}>{metric.value}</span>
-                          <span className="text-xl font-semibold text-[#85d5c8]">{metric.health}%</span>
-                        </div>
-                      </div>
-                      <div className="w-full bg-gray-700/50 rounded-full h-3">
-                        <div 
-                          className="bg-[#85d5c8] h-3 rounded-full transition-all duration-1000"
-                          style={{ width: `${metric.health}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+  ref={el => sectionRefs.current[4] = el}
+  id="maintenance"
+  className="relative min-h-screen py-32 parallax"
+  style={{ 
+    backgroundImage: `url(${bg4})`,
+    backgroundAttachment: 'fixed'
+  }}>
+  <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/50"></div>
+  <motion.div 
+    className="container mx-auto px-8 relative z-10 flex flex-col items-center"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+    viewport={{ once: true }}
+  >
+    <motion.h2 
+      className="text-8xl font-extrabold mb-20 text-center text-[#85d5c8]"
+      initial={{ opacity: 0, y: -50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      Intelligent RPA in Factory
+    </motion.h2>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full">
+      <motion.div 
+        className="bg-black/80 p-12 rounded-3xl text-white shadow-xl flex flex-col justify-center"
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="text-6xl font-semibold text-[#85d5c8]">
+          Smart Automation<br/>
+          Effortless Efficiency
         </div>
-      </section>
+        <button className="mt-8 bg-[#85d5c8] hover:bg-[#64b3a5] text-black text-2xl py-4 px-8 rounded-full shadow-lg transition-all duration-300">
+          Learn More
+        </button>
+      </motion.div>
+      <motion.div 
+        className="text-right text-6xl font-semibold text-white"
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        style={{ width: "100%" }}
+      >
+        <span className="typing-effect">Enhancing Automation.<br/> Maximizing Productivity.</span>
+      </motion.div>
+    </div>
+  </motion.div>
+  <style>
+    {`
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .text-right {
+          text-align: center;
+        }
+        .w-full {
+          width: 100% !important;
+        }
+      }
+      .typing-effect::after {
+        content: '|';
+        animation: blink 0.7s infinite;
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+    `}
+  </style>
+</section>
+
+
     </div>
   );
 }

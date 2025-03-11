@@ -16,6 +16,27 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.typing-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #85d5c8;
+  font-weight: bold;
+  color: #85d5c8;
+  animation: typing 2.5s steps(30, end) forwards 0.8s 1;
+}
+
+
 .bg-parallax {
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../assets/bg1.jpg");
   background-attachment: fixed;

@@ -3,6 +3,7 @@ import { Upload, Brain, TrendingUp, Clock, AlertTriangle, CheckCircle2, ChevronD
 import * as XLSX from 'xlsx';
 import './index.css';
 import Navbar from '../Navbar/Navbar';
+import { div } from 'framer-motion/client';
 
 interface AnalysisData {
   totalOrders: number;
@@ -148,8 +149,9 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div>
       <Navbar/>
+    <div className="app">
       <section className="welcome-section">
         <div className="welcome-content">
           <div className="welcome-left">
@@ -334,6 +336,7 @@ function App() {
           </div>
         </section>
       )}
+    </div>
     </div>
   );
 }
