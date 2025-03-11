@@ -1,6 +1,4 @@
 /* Loading Screen */
-
-
 .loading-screen {
     position: fixed;
     inset: 0;
@@ -297,3 +295,49 @@
   .nav-item:active .nav-item-content {
     transform: translateZ(5px);
   }
+
+
+
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  /* Navbar Adjustments */
+  .navbar {
+    padding: 0.5rem;
+    height: 60px;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* Show only 3 options on mobile */
+  .nav-item {
+    width: 120px;
+    height: 35px;
+  }
+
+
+
+  .nav-item:nth-child(n+4) { 
+    display: none; /* Hide all options after the third one */
+  }
+
+  .nav-item span {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra Small Devices (Max Width 480px) */
+@media screen and (max-width: 480px) {
+  .nav-item {
+    width: 100px;
+    height: 30px;
+  }
+
+  .nav-item span {
+    font-size: 0.6rem;
+  }
+}

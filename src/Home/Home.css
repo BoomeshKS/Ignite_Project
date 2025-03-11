@@ -285,3 +285,111 @@ html {
 .progress-bar {
   animation: progressFill 1.5s ease-out forwards;
 }
+
+
+
+
+@media (max-width: 468px) {
+  /* Hero Section */
+  #hero {
+    background-attachment: scroll !important;
+    padding: 4rem 0rem;
+    text-align: center;
+  }
+
+  #hero h1 {
+    font-size: 1.9rem;
+    white-space: pre-line;
+  }
+
+  #hero p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Machine Status Section */
+  .text-6xl {
+    font-size: 2.5rem !important;
+  }
+
+  .grid-cols-2,
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .p-10 {
+    padding: 1.5rem !important;
+  }
+
+
+  /* Process Optimization */
+  .marquee {
+    font-size: 1.5rem !important;
+    animation: marquee 8s linear infinite !important;
+  }
+
+  .marquee p {
+    padding: 0 1rem;
+  }
+
+  .text-6xl {
+    font-size: 2.5rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.5rem !important;
+  }
+}
+
+
+
+/* Mobile Responsive performance Analysis Section */
+@media (max-width: 768px) {
+  .per-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .per-text-box {
+    width: 120%;
+    padding: 0px;
+  }
+
+  .per-heading {
+    font-size: 2.5rem;
+  }
+
+  .per-subheading {
+    font-size: 1.2rem;
+  }
+
+  .per-percentage-box {
+    font-size: 4rem;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .per-heading {
+    font-size: 2rem;
+  }
+
+  .per-subheading {
+    font-size: 1rem;
+  }
+
+  .per-percentage-box {
+    font-size: 6rem;
+  }
+  .typing-effect{
+    margin-left: -30px;
+  }
+
+}
+
